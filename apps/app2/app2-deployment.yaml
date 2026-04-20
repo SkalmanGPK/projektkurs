@@ -1,12 +1,12 @@
 apiVersion: v1
-kind: Service
+kind: Service # Defining a networking service
 metadata:
-  name: ids-app2-service
+  name: ids-app2-service # Name that is used to find the service internally
 spec:
   selector:
-    app: ids-app2
+    app: ids-app2 # telling that this service should send trafic to pods marked with "app: ids-app2"
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 8080
-  type: ClusterIP
+      port: 80 # Port that the service listens to outward (internally in cluster)
+      targetPort: 8080 # port inside the contianer that trafic should be sent onwards to
+  type: ClusterIP # Makes the service only reachable from inside the kubernetes cluster
