@@ -13,36 +13,26 @@ spec:
         app: box-a
     spec:
       containers:
-      - name: alpine
+      - name: sensor-simulator
         image: alpine:latest
-          # Skapa miljövariabler för att enkelt kunna ändra mål senare
-        env:
-        - name: DB_HOST
-          value: "192.168.1.XX" # din dators lokala IP
-        - name: DB_USER
-          value: "sensor_user"
-        - name: DB_PASSWORD
-          value: "password123"
-        - name: DB_NAME
-          value: "industrial_db"
         command: ["/bin/sh", "-c"]
         args:
         - |
-          # Installera klienten för att kunna skicka data
-          apk add --no-cache mysql-client
-          
+          apk add --no-cache curl
+
           while true; do
-            # Simulera industridata
             TEMP=$(shuf -i 20-100 -n 1)
             PRESS=$(shuf -i 900-1100 -n 1)
             M_ID="MC-$(shuf -i 1-5 -n 1)"
             TS=$(date '+%Y-%m-%d %H:%M:%S')
 
-            # Skicka data till Docker-databasen över nätverket
-            mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASSWORD" "$DB_NAME" \
-            -e "INSERT INTO sensor_data (timestamp, machine_id, temperature, pressure) VALUES ('$TS', '$M_ID', $TEMP, $PRESS);" \
-            && echo "Data skickad: $M_ID ($TEMP C)" \
-            || echo "Kunde inte nå Docker-DB på $DB_HOST"
+            JSON="{\"timestamp\":\"$TS\",\"machine_id\":\"$M_ID\",\"temperature\":$TEMP,\"pressure\":$PRESS}"
+
+            curl -X POST http://app3-service/ingest \
+                 -H "Content-Type: application/json" \
+                 -d "$JSON"
+
+            echo "Sent: $JSON"
 
             sleep 5
           done
