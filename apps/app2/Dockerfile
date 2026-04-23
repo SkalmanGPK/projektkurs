@@ -4,17 +4,18 @@ FROM golang:1.22-alpine
 # The workfolder is placed inside the container to /app
 WORKDIR /app
 
-# Copying the main.go from the computer to inside the container
+# Copying the main.go from your computer to the container
 COPY main.go .
 
-# Deactivating Go Modules since we're running a simple file without external libraries
+# Deactivating Go Modules since we're using only standard libraries
 ENV GO111MODULE=off
 
-# Compiling code to a runnable binary with the name ids
-RUN go build -o ids main.go
+# Compiling the code. 
+# Ensuresthe binary is statically linked (best for Alpine)
+RUN CGO_ENABLED=0 go build -o app2-proxy main.go
 
-# Informing the container that it should listen to port 8080
+# Informing the container to listen on port 8080
 EXPOSE 8080
 
-# Running application when a container is started
-CMD ["./ids"]
+# Running the application
+CMD ["./app2-proxy"]

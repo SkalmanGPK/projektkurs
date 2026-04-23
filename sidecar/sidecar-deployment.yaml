@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sidecar-verifier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: verifier
+  template:
+    metadata:
+      labels:
+        app: verifier
+    spec:
+      containers:
+      - name: verifier-container
+        # Namnet på imagen du bygger lokalt
+        image: sidecar:local 
+        # Viktigt för lokala tester: hämta inte från internet
+        imagePullPolicy: Never

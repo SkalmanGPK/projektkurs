@@ -3,54 +3,50 @@ package main
 import (
 	"fmt"
 	"net/http"
-	"time"
+	"net/http/httputil"
+	"net/url"
 )
-
-// Global variable to keep track of amount of calls (permission for IDS)
-var (
-	requestCount int
-)
-// idsHandler thats ran at every incoming HTTP-call
-func idsHandler(w http.ResponseWriter, r *http.Request) {
-	requestCount++ // raises the count for every visitor
-
-	// Signaturebased detection: Looking for specific "User-Agents"
-	// User-agent often shows if it is a regular web browser or a script thats making the call.
-	ua := r.Header.Get("User-Agent")
-	if ua == "AttackTool/1.0" {
-		fmt.Printf("Malicious User-Agent detected: %s from IP %s\n", ua, r.RemoteAddr)
-	}
-
-	// DPI (Deep Packet Inspection) Simulation:
-	// Looking after suspicious strings in the URL (for example SQL-injections or script)
-	if r.URL.RawQuery != "" {
-		fmt.Printf("Located suspicious query string: %s\n", r.URL.RawQuery)
-	}
-	// Answering the client that the trafic is being supervised
-	w.WriteHeader(http.StatusOK)
-	fmt.Fprint(w, "Traffic Monitored")
-}
 
 func main() {
-	// registrating the endpoint /monitor
-	http.HandleFunc("/monitor", idsHandler)
+	// 1. Define the destination: Where should the traffic go?
+	// In your K8s cluster, App 3 is reachable via its service name and port.
+	app3Url, _ := url.Parse("http://app3-service:8081")
 
-	// Anomaly-detection (DoS-preventation) is ran in it's own "Goroutine" (background)
-	go func() {
-		for {
-			// Waiting in 10 sec between every control
-			time.Sleep(10 * time.Second)
-			
-			// If the amout of calls is above 50 during the last 10 seconds it's flagged as DoS
-			if requestCount > 50 {
-				fmt.Printf("Traffic spike detected! %d requests in 10s. Possible DoS attack.\n", requestCount)
-			}
-			// The counter is set to 0 for the next 10 second duration
-			requestCount = 0
+	// 2. Initialize the Reverse Proxy
+	// This built-in tool handles copying headers, body, and managing the connection.
+	proxy := httputil.NewSingleHostReverseProxy(app3Url)
+
+	// 3. Create the main handler for all incoming traffic
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		
+		// --- IDS LOGIC START ---
+		// Signature-based detection: Check for a specific "malicious" User-Agent
+		if r.Header.Get("User-Agent") == "AttackTool/1.0" {
+			fmt.Printf("[ALERT] Malicious traffic detected from IP: %s\n", r.RemoteAddr)
 		}
-	}()
+		
+		// Log that we are inspecting the sensor data packet
+		if r.URL.Path == "/monitor" {
+			fmt.Println("Inspecting incoming sensor data...")
+		}
+		// --- IDS LOGIC END ---
 
-	fmt.Println("IDS sensor is active on port 8080...")
-	// Starting server and listening on port 8080
-	http.ListenAndServe(":8080", nil)
+		// Forward the request automatically to App 3 (the target)
+		// The proxy takes the response from App 3 and sends it back to App 1
+		proxy.ServeHTTP(w, r)
+	})
+
+	// 4. Health endpoint for the sidecar-proxy
+	// This allows your latency-testing tool to verify that App 2 is up.
+	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		fmt.Fprint(w, "IDS Proxy Active")
+	})
+
+	fmt.Println("Simplified IDS-Proxy listening on port 8080...")
+	
+	// Start the server on port 8080
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		fmt.Printf("Server failed: %v\n", err)
+	}
 }

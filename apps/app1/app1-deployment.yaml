@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: container-a
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: box-a
+  template:
+    metadata:
+      labels:
+        app: box-a
+    spec:
+      containers:
+      - name: sensor-simulator
+        image: app1:local
+        imagePullPolicy: Never # tell k8s to not look for it on the internet
+        ports:
+        - containerPort: 8080 # Port for health-server in the Go-code
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-service # Sidecar proxy is looking after this name
+spec:
+  selector:
+    app: box-a
+  ports:
+    - protocol: TCP
+      port: 8080 # Port which the service listens to
+      targetPort: 8080 # Port in the container
+  type: ClusterIP
