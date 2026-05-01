@@ -1,65 +1,48 @@
-# Köra experimentet lokalt
+# Köra experimentet
 
-Det här projektet är uppsatt så att hela miljön kan startas och köras via ett enda script.
+Allt körs via ett script.
 
-## Förutsättningar
-
-Följande måste vara installerat och fungera:
-
-- docker
-- kubectl
-- minikube
-- python3
-
-Kontrollera t.ex.:
-
-```bash
-docker --version
-kubectl version --client
-minikube version
-python3 --version
-
-Minikube behöver kunna starta (t.ex. med docker driver).
-
-Körning
+## Körning
 
 Stå i root-mappen för repot och kör:
 
-chmod +x run.sh
-./run.sh
+```bash
+chmod +x start_test.sh
+./start_test.sh
 
-Scriptet gör följande:
+Scriptet:
 
-Startar minikube (om det inte redan kör)
-Bygger alla images
-Startar extern databas (container)
-Deployar alla applikationer i Kubernetes
-Väntar tills pods är redo
-Kör experimentet i tre faser:
-normal drift
-databasen stängs av
-databasen startas igen
-Samlar loggar i experiment_log.txt
-Kör analys via analyze.py
-Städar upp alla resurser
+installerar dependencies vid behov
+startar docker och minikube
+bygger alla images
+deployar applikationerna i Kubernetes
+kör experimentet
+sparar logg i experiment_log.txt
+kör analys
+städar upp resurser
+Första körningen
+
+Om docker installeras första gången kommer scriptet att avbrytas efter att ha lagt till din användare i docker-gruppen.
+
+Logga då ut och in igen, och kör scriptet en gång till:
+
+./start_test.sh
 Output
 
-Efter körning finns:
+Efter körning:
 
-experiment_log.txt – rå logg från testet
-output från analys-scriptet i terminalen
+experiment_log.txt innehåller loggar från testet
+analys skrivs ut i terminalen
+Om något inte fungerar
 
-Vanliga problem
+Kontrollera:
 
-Om något failar:
+minikube status
+kubectl get pods
+docker ps
 
-Kör minikube status och säkerställ att den är igång
-Kör kubectl get pods och se om något fastnar i Pending/CrashLoop
-Kontrollera att port 3306 inte redan används (databasen)
-Köra om testet
+Vanliga problem:
 
-Det går att köra scriptet igen direkt:
-
-./run.sh
-
-Scriptet tar bort tidigare resurser själv.
+minikube startar inte → kör minikube delete och testa igen
+pods fastnar → kontrollera med kubectl describe pod
+port 3306 är upptagen → stoppa lokal MySQL

@@ -2,5 +2,7 @@ Go 1.26
 Docker
 Kubernetes
 MySQL 8.0
-Alpine Linux
+Ubuntu
 mysql-client
+minikube (with docker driver)
+python
