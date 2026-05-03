@@ -24,6 +24,7 @@ func main() {
 
 	http.HandleFunc("/ingest", func(w http.ResponseWriter, r *http.Request) {
 		received++
+
 		var data SensorData
 		json.NewDecoder(r.Body).Decode(&data)
 
@@ -31,9 +32,9 @@ func main() {
 			fmt.Printf("!!! CRITICAL TEMP on %s: %d !!!\n", data.MachineID, data.Temperature)
 		}
 
+		// Ingen success check - stored okas oavsett om DB-skrivningen lyckades
 		db.Exec("INSERT INTO sensor_data (timestamp, machine_id, temperature, pressure) VALUES (?, ?, ?, ?)",
 			data.Timestamp, data.MachineID, data.Temperature, data.Pressure)
-		
 		stored++
 
 		fmt.Println("Stored data from:", data.MachineID)
@@ -43,7 +44,18 @@ func main() {
 	http.HandleFunc("/stats", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, `{"received": %d, "stored": %d}`, received, stored)
 	})
-	
+
+	// Nytt endpoint - hamtar faktiskt antal rader i databasen
+	http.HandleFunc("/dbcount", func(w http.ResponseWriter, r *http.Request) {
+		var count int
+		row := db.QueryRow("SELECT COUNT(*) FROM sensor_data")
+		if err := row.Scan(&count); err != nil {
+			fmt.Fprintf(w, `{"db_actual": -1}`)
+			return
+		}
+		fmt.Fprintf(w, `{"db_actual": %d}`, count)
+	})
+
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprint(w, "OK")
 	})
