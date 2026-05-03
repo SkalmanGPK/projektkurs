@@ -4,5 +4,4 @@ metadata:
   name: mysql-external-service
 spec:
   type: ExternalName
-  # 'host.docker.internal' maps to your physical computer from inside a container
-  externalName: host.docker.internal
+  externalName: my-external-db
