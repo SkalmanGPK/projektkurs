@@ -32,11 +32,16 @@ func main() {
 			fmt.Printf("!!! CRITICAL TEMP on %s: %d !!!\n", data.MachineID, data.Temperature)
 		}
 
-		// Ingen success check - stored okas oavsett om DB-skrivningen lyckades
-		db.Exec("INSERT INTO sensor_data (timestamp, machine_id, temperature, pressure) VALUES (?, ?, ?, ?)",
+		// Success check - stored okas bara om skrivningen lyckades
+		_, err := db.Exec("INSERT INTO sensor_data (timestamp, machine_id, temperature, pressure) VALUES (?, ?, ?, ?)",
 			data.Timestamp, data.MachineID, data.Temperature, data.Pressure)
-		stored++
+		if err != nil {
+			fmt.Printf("[!] DB-skrivning misslyckades: %v\n", err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 
+		stored++
 		fmt.Println("Stored data from:", data.MachineID)
 		w.WriteHeader(http.StatusOK)
 	})
@@ -45,7 +50,6 @@ func main() {
 		fmt.Fprintf(w, `{"received": %d, "stored": %d}`, received, stored)
 	})
 
-	// Nytt endpoint - hamtar faktiskt antal rader i databasen
 	http.HandleFunc("/dbcount", func(w http.ResponseWriter, r *http.Request) {
 		var count int
 		row := db.QueryRow("SELECT COUNT(*) FROM sensor_data")
