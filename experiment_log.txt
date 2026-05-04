@@ -1,101 +1,101 @@
-[12:59:36] FAS1_START
-2026-05-04T12:59:30.475892953Z --- Network Latency Verifier Started ---
-2026-05-04T12:59:30.476555055Z [!] App1 (Sensor) is unreachable: Get "http://app1-service:8080/health": dial tcp 10.96.4.112:8080: connect: connection refused
-2026-05-04T12:59:30.476907486Z [!] App2 (Proxy)  is unreachable: Get "http://ids-app2-service:80/health": dial tcp 10.96.127.90:80: connect: connection refused
-2026-05-04T12:59:30.477546455Z [+] App3 (Filter) | Latency: 620.886µs | Status: 200 OK
-2026-05-04T12:59:30.478075522Z [STATS] App3: {"received": 0, "stored": 0}
-2026-05-04T12:59:30.484659402Z [DBCOUNT] App3: {"db_actual": 0}
-2026-05-04T12:59:30.484674515Z ---------------------------------------
-2026-05-04T12:59:40.492873562Z [+] App1 (Sensor) | Latency: 739.584µs | Status: 200 OK
-2026-05-04T12:59:40.493370345Z [+] App2 (Proxy)  | Latency: 500.326µs | Status: 200 OK
-2026-05-04T12:59:40.493590863Z [+] App3 (Filter) | Latency: 181.462µs | Status: 200 OK
-2026-05-04T12:59:40.494208168Z [STATS] App3: {"received": 1, "stored": 1}
-2026-05-04T12:59:40.494913422Z [DBCOUNT] App3: {"db_actual": 1}
-2026-05-04T12:59:40.494922584Z ---------------------------------------
-2026-05-04T12:59:50.502732365Z [+] App1 (Sensor) | Latency: 588.851µs | Status: 200 OK
-2026-05-04T12:59:50.503279414Z [+] App2 (Proxy)  | Latency: 530.974µs | Status: 200 OK
-2026-05-04T12:59:50.503478776Z [+] App3 (Filter) | Latency: 167.196µs | Status: 200 OK
-2026-05-04T12:59:50.504075718Z [STATS] App3: {"received": 3, "stored": 3}
-2026-05-04T12:59:50.504726811Z [DBCOUNT] App3: {"db_actual": 3}
-2026-05-04T12:59:50.504734853Z ---------------------------------------
-2026-05-04T13:00:00.518093348Z [+] App1 (Sensor) | Latency: 5.962261ms | Status: 200 OK
-2026-05-04T13:00:00.518888062Z [+] App2 (Proxy)  | Latency: 762.237µs | Status: 200 OK
-2026-05-04T13:00:00.519291352Z [+] App3 (Filter) | Latency: 201.965µs | Status: 200 OK
-2026-05-04T13:00:00.519925332Z [STATS] App3: {"received": 5, "stored": 5}
-2026-05-04T13:00:00.520713995Z [DBCOUNT] App3: {"db_actual": 5}
-2026-05-04T13:00:00.520730041Z ---------------------------------------
-2026-05-04T13:00:10.528863341Z [+] App1 (Sensor) | Latency: 697.603µs | Status: 200 OK
-2026-05-04T13:00:10.529420161Z [+] App2 (Proxy)  | Latency: 560.459µs | Status: 200 OK
-2026-05-04T13:00:10.529637251Z [+] App3 (Filter) | Latency: 178.752µs | Status: 200 OK
-2026-05-04T13:00:10.530278752Z [STATS] App3: {"received": 7, "stored": 7}
-2026-05-04T13:00:10.530911039Z [DBCOUNT] App3: {"db_actual": 7}
-2026-05-04T13:00:10.530922138Z ---------------------------------------
-2026-05-04T13:00:20.538814191Z [+] App1 (Sensor) | Latency: 674.395µs | Status: 200 OK
-2026-05-04T13:00:20.539333796Z [+] App2 (Proxy)  | Latency: 526.666µs | Status: 200 OK
-2026-05-04T13:00:20.539540487Z [+] App3 (Filter) | Latency: 178.51µs | Status: 200 OK
-2026-05-04T13:00:20.540235984Z [STATS] App3: {"received": 9, "stored": 9}
-2026-05-04T13:00:20.540823547Z [DBCOUNT] App3: {"db_actual": 9}
-2026-05-04T13:00:20.540838378Z ---------------------------------------
-2026-05-04T13:00:30.548785717Z [+] App1 (Sensor) | Latency: 641.597µs | Status: 200 OK
-2026-05-04T13:00:30.549390070Z [+] App2 (Proxy)  | Latency: 579.98µs | Status: 200 OK
-2026-05-04T13:00:30.549611200Z [+] App3 (Filter) | Latency: 170.895µs | Status: 200 OK
-2026-05-04T13:00:30.550325921Z [STATS] App3: {"received": 11, "stored": 11}
-2026-05-04T13:00:30.550935137Z [DBCOUNT] App3: {"db_actual": 11}
-2026-05-04T13:00:30.550944273Z ---------------------------------------
-[13:00:36] FAS2_START
-2026-05-04T13:00:40.558705860Z [+] App2 (Proxy)  | Latency: 574.435µs | Status: 200 OK
-2026-05-04T13:00:40.558837949Z [+] App3 (Filter) | Latency: 144.627µs | Status: 200 OK
-2026-05-04T13:00:40.559459623Z [+] App1 (Sensor) | Latency: 589.59µs | Status: 200 OK
-2026-05-04T13:00:40.560065642Z [STATS] App3: {"received": 13, "stored": 12}
-2026-05-04T13:00:40.562596448Z [DBCOUNT] App3: {"db_actual": -1}
-2026-05-04T13:00:40.562619274Z ---------------------------------------
-2026-05-04T13:00:50.570870244Z [+] App1 (Sensor) | Latency: 714.424µs | Status: 200 OK
-2026-05-04T13:00:50.571414260Z [+] App2 (Proxy)  | Latency: 564.288µs | Status: 200 OK
-2026-05-04T13:00:50.571631835Z [+] App3 (Filter) | Latency: 193.89µs | Status: 200 OK
-2026-05-04T13:00:50.572328537Z [STATS] App3: {"received": 15, "stored": 12}
-2026-05-04T13:00:50.573726124Z [DBCOUNT] App3: {"db_actual": -1}
-2026-05-04T13:00:50.573745814Z ---------------------------------------
-2026-05-04T13:01:00.581929743Z [+] App1 (Sensor) | Latency: 752.931µs | Status: 200 OK
-2026-05-04T13:01:00.582457115Z [+] App2 (Proxy)  | Latency: 525.822µs | Status: 200 OK
-2026-05-04T13:01:00.582634755Z [+] App3 (Filter) | Latency: 170.16µs | Status: 200 OK
-2026-05-04T13:01:00.583328290Z [STATS] App3: {"received": 17, "stored": 12}
-2026-05-04T13:01:00.584376598Z [DBCOUNT] App3: {"db_actual": -1}
-2026-05-04T13:01:00.584391107Z ---------------------------------------
-2026-05-04T13:01:10.593610953Z [+] App1 (Sensor) | Latency: 1.421947ms | Status: 200 OK
-2026-05-04T13:01:10.595052594Z [+] App2 (Proxy)  | Latency: 1.383734ms | Status: 200 OK
-2026-05-04T13:01:10.595618798Z [+] App3 (Filter) | Latency: 418.845µs | Status: 200 OK
-2026-05-04T13:01:10.597282163Z [STATS] App3: {"received": 19, "stored": 12}
-2026-05-04T13:01:10.600746787Z [DBCOUNT] App3: {"db_actual": -1}
-2026-05-04T13:01:10.600763110Z ---------------------------------------
-2026-05-04T13:01:20.607746449Z [+] App1 (Sensor) | Latency: 615.564µs | Status: 200 OK
-2026-05-04T13:01:20.608316553Z [+] App2 (Proxy)  | Latency: 523.868µs | Status: 200 OK
-2026-05-04T13:01:20.608510997Z [+] App3 (Filter) | Latency: 164.62µs | Status: 200 OK
-2026-05-04T13:01:20.609184646Z [STATS] App3: {"received": 21, "stored": 12}
-2026-05-04T13:01:20.610935621Z [DBCOUNT] App3: {"db_actual": -1}
-2026-05-04T13:01:20.610951602Z ---------------------------------------
-2026-05-04T13:01:30.611654585Z [+] App3 (Filter) | Latency: 444.73µs | Status: 200 OK
-2026-05-04T13:01:30.613175729Z [+] App1 (Sensor) | Latency: 1.479156ms | Status: 200 OK
-2026-05-04T13:01:30.614820792Z [+] App2 (Proxy)  | Latency: 1.535946ms | Status: 200 OK
-2026-05-04T13:01:30.616395614Z [STATS] App3: {"received": 23, "stored": 12}
-2026-05-04T13:01:30.620733237Z [DBCOUNT] App3: {"db_actual": -1}
-2026-05-04T13:01:30.620778491Z ---------------------------------------
-[13:01:39] FAS3_START
-2026-05-04T13:01:40.629137858Z [+] App1 (Sensor) | Latency: 929.3µs | Status: 200 OK
-2026-05-04T13:01:40.629747618Z [+] App2 (Proxy)  | Latency: 589.709µs | Status: 200 OK
-2026-05-04T13:01:40.629983905Z [+] App3 (Filter) | Latency: 218.801µs | Status: 200 OK
-2026-05-04T13:01:40.630703131Z [STATS] App3: {"received": 25, "stored": 12}
-2026-05-04T13:01:40.631587874Z [DBCOUNT] App3: {"db_actual": -1}
-2026-05-04T13:01:40.631609232Z ---------------------------------------
-2026-05-04T13:01:50.641106049Z [+] App1 (Sensor) | Latency: 1.824979ms | Status: 200 OK
-2026-05-04T13:01:50.642746450Z [+] App2 (Proxy)  | Latency: 1.542681ms | Status: 200 OK
-2026-05-04T13:01:50.643517176Z [+] App3 (Filter) | Latency: 614.777µs | Status: 200 OK
-2026-05-04T13:01:50.644331314Z [STATS] App3: {"received": 27, "stored": 14}
-2026-05-04T13:01:50.645167608Z [DBCOUNT] App3: {"db_actual": 14}
-2026-05-04T13:01:50.645187622Z ---------------------------------------
-2026-05-04T13:02:00.653802561Z [+] App1 (Sensor) | Latency: 644.567µs | Status: 200 OK
-2026-05-04T13:02:00.654435085Z [+] App2 (Proxy)  | Latency: 635.084µs | Status: 200 OK
-2026-05-04T13:02:00.654638370Z [+] App3 (Filter) | Latency: 180.883µs | Status: 200 OK
-2026-05-04T13:02:00.655395278Z [STATS] App3: {"received": 29, "stored": 16}
-2026-05-04T13:02:00.656114712Z [DBCOUNT] App3: {"db_actual": 16}
-2026-05-04T13:02:00.656130416Z ---------------------------------------
-[13:02:09] EXPERIMENT_SLUT
+[13:38:39] FAS1_START
+2026-05-04T13:38:33.282498002Z --- Network Latency Verifier Started ---
+2026-05-04T13:38:33.283531522Z [+] App3 (Filter) | Latency: 1.007922ms | Status: 200 OK
+2026-05-04T13:38:33.283932304Z [!] App1 (Sensor) is unreachable: Get "http://app1-service:8080/health": dial tcp 10.96.176.70:8080: connect: connection refused
+2026-05-04T13:38:33.284209132Z [!] App2 (Proxy)  is unreachable: Get "http://ids-app2-service:80/health": dial tcp 10.96.101.227:80: connect: connection refused
+2026-05-04T13:38:33.284688373Z [STATS] App3: {"received": 0, "stored": 0}
+2026-05-04T13:38:33.293192273Z [DBCOUNT] App3: {"db_actual": 0}
+2026-05-04T13:38:33.293211952Z ---------------------------------------
+2026-05-04T13:38:43.303734289Z [+] App1 (Sensor) | Latency: 1.552093ms | Status: 200 OK
+2026-05-04T13:38:43.305133188Z [+] App2 (Proxy)  | Latency: 1.373882ms | Status: 200 OK
+2026-05-04T13:38:43.305698436Z [+] App3 (Filter) | Latency: 407.813µs | Status: 200 OK
+2026-05-04T13:38:43.307213224Z [STATS] App3: {"received": 1, "stored": 1}
+2026-05-04T13:38:43.308817728Z [DBCOUNT] App3: {"db_actual": 1}
+2026-05-04T13:38:43.308845165Z ---------------------------------------
+2026-05-04T13:38:53.316856140Z [+] App1 (Sensor) | Latency: 739.258µs | Status: 200 OK
+2026-05-04T13:38:53.317451651Z [+] App2 (Proxy)  | Latency: 519.605µs | Status: 200 OK
+2026-05-04T13:38:53.317578320Z [+] App3 (Filter) | Latency: 173.57µs | Status: 200 OK
+2026-05-04T13:38:53.318236649Z [STATS] App3: {"received": 3, "stored": 3}
+2026-05-04T13:38:53.318911141Z [DBCOUNT] App3: {"db_actual": 3}
+2026-05-04T13:38:53.318919635Z ---------------------------------------
+2026-05-04T13:39:03.327876667Z [+] App2 (Proxy)  | Latency: 1.545477ms | Status: 200 OK
+2026-05-04T13:39:03.328590404Z [+] App3 (Filter) | Latency: 539.433µs | Status: 200 OK
+2026-05-04T13:39:03.330224787Z [+] App1 (Sensor) | Latency: 1.687535ms | Status: 200 OK
+2026-05-04T13:39:03.331941404Z [STATS] App3: {"received": 5, "stored": 5}
+2026-05-04T13:39:03.333456766Z [DBCOUNT] App3: {"db_actual": 5}
+2026-05-04T13:39:03.333490109Z ---------------------------------------
+2026-05-04T13:39:13.342365857Z [+] App3 (Filter) | Latency: 230.064µs | Status: 200 OK
+2026-05-04T13:39:13.343078833Z [+] App1 (Sensor) | Latency: 707.736µs | Status: 200 OK
+2026-05-04T13:39:13.343745164Z [+] App2 (Proxy)  | Latency: 651.729µs | Status: 200 OK
+2026-05-04T13:39:13.344365161Z [STATS] App3: {"received": 7, "stored": 7}
+2026-05-04T13:39:13.344962120Z [DBCOUNT] App3: {"db_actual": 7}
+2026-05-04T13:39:13.344972800Z ---------------------------------------
+2026-05-04T13:39:23.352195021Z [+] App1 (Sensor) | Latency: 726.544µs | Status: 200 OK
+2026-05-04T13:39:23.352739270Z [+] App2 (Proxy)  | Latency: 550.449µs | Status: 200 OK
+2026-05-04T13:39:23.352946925Z [+] App3 (Filter) | Latency: 166.355µs | Status: 200 OK
+2026-05-04T13:39:23.353684432Z [STATS] App3: {"received": 9, "stored": 9}
+2026-05-04T13:39:23.354357528Z [DBCOUNT] App3: {"db_actual": 9}
+2026-05-04T13:39:23.354371517Z ---------------------------------------
+2026-05-04T13:39:33.362986471Z [+] App1 (Sensor) | Latency: 753.318µs | Status: 200 OK
+2026-05-04T13:39:33.363567859Z [+] App2 (Proxy)  | Latency: 536.767µs | Status: 200 OK
+2026-05-04T13:39:33.363753608Z [+] App3 (Filter) | Latency: 177.276µs | Status: 200 OK
+2026-05-04T13:39:33.364360546Z [STATS] App3: {"received": 11, "stored": 11}
+2026-05-04T13:39:33.364968134Z [DBCOUNT] App3: {"db_actual": 11}
+2026-05-04T13:39:33.364978328Z ---------------------------------------
+[13:39:39] FAS2_START
+2026-05-04T13:39:43.373804139Z [+] App1 (Sensor) | Latency: 1.491637ms | Status: 200 OK
+2026-05-04T13:39:43.375241941Z [+] App2 (Proxy)  | Latency: 1.445453ms | Status: 200 OK
+2026-05-04T13:39:43.375748571Z [+] App3 (Filter) | Latency: 358.711µs | Status: 200 OK
+2026-05-04T13:39:43.377326465Z [STATS] App3: {"received": 13, "stored": 12}
+2026-05-04T13:39:43.384630174Z [DBCOUNT] App3: {"db_actual": -1}
+2026-05-04T13:39:43.384675752Z ---------------------------------------
+2026-05-04T13:39:53.392552810Z [+] App1 (Sensor) | Latency: 1.3906ms | Status: 200 OK
+2026-05-04T13:39:53.393100350Z [+] App2 (Proxy)  | Latency: 513.088µs | Status: 200 OK
+2026-05-04T13:39:53.393284691Z [+] App3 (Filter) | Latency: 177.013µs | Status: 200 OK
+2026-05-04T13:39:53.393970272Z [STATS] App3: {"received": 15, "stored": 12}
+2026-05-04T13:39:53.395368887Z [DBCOUNT] App3: {"db_actual": -1}
+2026-05-04T13:39:53.395385232Z ---------------------------------------
+2026-05-04T13:40:03.403919990Z [+] App2 (Proxy)  | Latency: 740.88µs | Status: 200 OK
+2026-05-04T13:40:03.404139196Z [+] App3 (Filter) | Latency: 181.061µs | Status: 200 OK
+2026-05-04T13:40:03.404723414Z [+] App1 (Sensor) | Latency: 570.576µs | Status: 200 OK
+2026-05-04T13:40:03.405363034Z [STATS] App3: {"received": 17, "stored": 12}
+2026-05-04T13:40:03.406383175Z [DBCOUNT] App3: {"db_actual": -1}
+2026-05-04T13:40:03.406397513Z ---------------------------------------
+2026-05-04T13:40:13.415448249Z [+] App1 (Sensor) | Latency: 1.655998ms | Status: 200 OK
+2026-05-04T13:40:13.416868572Z [+] App2 (Proxy)  | Latency: 1.406308ms | Status: 200 OK
+2026-05-04T13:40:13.417528124Z [+] App3 (Filter) | Latency: 443.002µs | Status: 200 OK
+2026-05-04T13:40:13.419110268Z [STATS] App3: {"received": 19, "stored": 12}
+2026-05-04T13:40:13.424064523Z [DBCOUNT] App3: {"db_actual": -1}
+2026-05-04T13:40:13.424116620Z ---------------------------------------
+2026-05-04T13:40:23.432638668Z [+] App2 (Proxy)  | Latency: 1.415138ms | Status: 200 OK
+2026-05-04T13:40:23.433124087Z [+] App3 (Filter) | Latency: 358.934µs | Status: 200 OK
+2026-05-04T13:40:23.434852657Z [+] App1 (Sensor) | Latency: 1.709797ms | Status: 200 OK
+2026-05-04T13:40:23.436453049Z [STATS] App3: {"received": 21, "stored": 12}
+2026-05-04T13:40:23.439904668Z [DBCOUNT] App3: {"db_actual": -1}
+2026-05-04T13:40:23.439937064Z ---------------------------------------
+2026-05-04T13:40:33.442839570Z [+] App1 (Sensor) | Latency: 1.642559ms | Status: 200 OK
+2026-05-04T13:40:33.444442645Z [+] App2 (Proxy)  | Latency: 1.517463ms | Status: 200 OK
+2026-05-04T13:40:33.444940303Z [+] App3 (Filter) | Latency: 383.681µs | Status: 200 OK
+2026-05-04T13:40:33.446574586Z [STATS] App3: {"received": 23, "stored": 12}
+2026-05-04T13:40:33.451108810Z [DBCOUNT] App3: {"db_actual": -1}
+2026-05-04T13:40:33.451147312Z ---------------------------------------
+[13:40:42] FAS3_START
+2026-05-04T13:40:43.460443094Z [+] App3 (Filter) | Latency: 256.937µs | Status: 200 OK
+2026-05-04T13:40:43.461261038Z [+] App1 (Sensor) | Latency: 803.925µs | Status: 200 OK
+2026-05-04T13:40:43.461942685Z [+] App2 (Proxy)  | Latency: 633.588µs | Status: 200 OK
+2026-05-04T13:40:43.462668764Z [STATS] App3: {"received": 25, "stored": 12}
+2026-05-04T13:40:43.464098749Z [DBCOUNT] App3: {"db_actual": -1}
+2026-05-04T13:40:43.464118740Z ---------------------------------------
+2026-05-04T13:40:53.471847494Z [+] App1 (Sensor) | Latency: 636.972µs | Status: 200 OK
+2026-05-04T13:40:53.472420845Z [+] App2 (Proxy)  | Latency: 559.791µs | Status: 200 OK
+2026-05-04T13:40:53.472676283Z [+] App3 (Filter) | Latency: 198.274µs | Status: 200 OK
+2026-05-04T13:40:53.473409587Z [STATS] App3: {"received": 27, "stored": 13}
+2026-05-04T13:40:53.474157974Z [DBCOUNT] App3: {"db_actual": 13}
+2026-05-04T13:40:53.474170221Z ---------------------------------------
+2026-05-04T13:41:03.482928629Z [+] App1 (Sensor) | Latency: 719.975µs | Status: 200 OK
+2026-05-04T13:41:03.483466330Z [+] App2 (Proxy)  | Latency: 540.752µs | Status: 200 OK
+2026-05-04T13:41:03.483687427Z [+] App3 (Filter) | Latency: 184.808µs | Status: 200 OK
+2026-05-04T13:41:03.484359760Z [STATS] App3: {"received": 29, "stored": 15}
+2026-05-04T13:41:03.484999110Z [DBCOUNT] App3: {"db_actual": 15}
+2026-05-04T13:41:03.485013028Z ---------------------------------------
+[13:41:13] EXPERIMENT_SLUT

@@ -15,7 +15,7 @@ spec:
       containers:
       - name: sensor-simulator
         image: app1:local
-        imagePullPolicy: Never # tell k8s to not look for it on the internet
+        imagePullPolicy: Never
         ports:
         - containerPort: 8080 # Port for health-server in the Go-code
 ---
